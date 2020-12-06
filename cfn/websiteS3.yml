@@ -47,6 +47,12 @@ Resources:
               AWS: !Sub 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginIdentity}'
             Action: 's3:GetObject'
             Resource: !Join ['', ['arn:aws:s3:::', !Ref WebsiteBucket, '/*']]
+          - Sid: DeployStaticFilesAccess
+            Effect: Allow
+            Principal:
+              AWS: arn:aws:iam::467096703885:user/deployToS3-quiz-app
+            Action: 's3:PutObject'
+            Resource: !Join ['', ['arn:aws:s3:::', !Ref WebsiteBucket, '/*']]
 
   WebsiteCloudfront:
     Type: AWS::CloudFront::Distribution
