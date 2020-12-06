@@ -64,6 +64,14 @@ Resources:
             DomainName: !Join ['', [!Ref WebsiteBucket , '.s3.', !Sub '${AWS::Region}', '.amazonaws.com']]
             S3OriginConfig:
               OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${CloudFrontOriginIdentity}'
+          - Id: APIOrigin
+            DomainName: qbw2kd5m1l.execute-api.eu-west-1.amazonaws.com
+            OriginPath: /Prod
+            CustomOriginConfig:
+              HTTPSPort: 443
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols:
+                - TLSv1.2
         Enabled: true
         HttpVersion: 'http2'
         DefaultRootObject: index.html
@@ -86,6 +94,22 @@ Resources:
             Cookies:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
+        CacheBehaviors:
+          - PathPattern: /api/*
+            AllowedMethods:
+              - DELETE
+              - GET
+              - HEAD
+              - OPTIONS
+              - PATCH
+              - POST
+              - PUT
+            ForwardedValues:
+              QueryString: false
+            CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+            TargetOriginId: APIOrigin
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: false
         PriceClass: PriceClass_All
         ViewerCertificate:
           AcmCertificateArn: arn:aws:acm:us-east-1:467096703885:certificate/0dda5204-c0ce-4bed-92e4-be316aabd1f2
