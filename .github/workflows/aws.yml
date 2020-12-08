@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  ClearBucket:
+  empty:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -14,6 +14,7 @@ jobs:
         run: bash scripts/clearS3.sh ${{secrets.AWS_ACCESS_KEY_ID}} ${{secrets.AWS_SECRET_ACCESS_KEY}} quiz.tormod.dev
   build:
     runs-on: ubuntu-latest
+    needs: empty
     steps:
       - uses: actions/checkout@v1
       - name: Push to S3
