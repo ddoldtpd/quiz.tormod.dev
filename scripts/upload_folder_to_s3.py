@@ -33,7 +33,7 @@ def main():
                 print(s3_path)
                 
                 contentType = magic.from_file(file, mime=True)
-                print(f"ContentType is {contentType} for file {file}")
+                print(f"ContentType is {contentType} for file {s3_path}")
                 extra_args = {"ContentType": f"{contentType}",
                               "ACL": "public-read"}
                 uploadDirectory(
