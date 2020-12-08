@@ -12,13 +12,10 @@ def uploadDirectory(s3, path, bucket_name, s3_path, extra_args):
 
 def setContentType(file, contentType):
     file_type = file.rsplit(".", 1)[1]
-    print(file_type)
-
     if file_type == 'css':
         contentType = 'text/css'
     elif file_type == 'js':
         contentType == 'application/javascript'
-
     return contentType
 
 
@@ -41,19 +38,18 @@ def main():
         s3 = session.resource("s3")
         for root, dirs, files in os.walk(local_path):
             for file in files:
-
                 file_origin = os.path.join(root, file)
-                s3_path = file_origin.rsplit("build/", 1)[1]
-
-                print(s3_path)
                 print(f"root: {file_origin}")
+
                 contentType = magic.from_file(file_origin, mime=True)
                 contentType = setContentType(file, contentType)
-                print(f"ContentType is {contentType} for file {s3_path}")
+                print(f"ContentType is {contentType} for file {file_origin}")
                 extra_args = {"ContentType": f"{contentType}",
                               "ACL": "public-read"}
 
-                print(f"s3: {s3}, file: {file_origin}, bucket: {bucket_name}, s3_path: {s3_path}, extra_args:{extra_args}")
+                s3_path = file_origin.rsplit("build/", 1)[1]
+                print(f"""Arguments for upload => s3: {s3}, file: {file_origin}, 
+                          bucket: {bucket_name}, s3_path: {s3_path}, extra_args:{extra_args}""")
                 uploadDirectory(
                     s3,
                     file_origin,
