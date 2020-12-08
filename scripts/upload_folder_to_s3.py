@@ -29,7 +29,7 @@ def main():
         s3 = session.resource("s3")
         for root, dirs, files in os.walk(local_path):
             for file in files:
-                s3_path = "." + os.path.join(root, file).split("build", 1)[1]
+                s3_path = os.path.join(root, file).split("build", 1)[1]
 
                 print(s3_path)
                 contentType = magic.from_file(s3_path, mime=True)
