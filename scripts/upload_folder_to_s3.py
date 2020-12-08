@@ -52,7 +52,7 @@ def main():
                 s3_path = file_origin.rsplit("build/", 1)[1]
                 print(f"""s3: {s3}, file: {file_origin}, bucket: {bucket_name},
                        s3_path: {s3_path}, extra_args:{extra_args}""")
-                       
+
                 uploadDirectory(
                     s3,
                     file_origin,
