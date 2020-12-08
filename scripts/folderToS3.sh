@@ -4,4 +4,5 @@ bucket_name=$3
 local_path=$4
 
 pip3 install boto3
+pip3 install --user python-magic
 python3 scripts/upload_folder_to_s3.py $aws_access_key_id $aws_access_key_secret $bucket_name $local_path

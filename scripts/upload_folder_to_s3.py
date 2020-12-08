@@ -1,4 +1,5 @@
 import boto3
+import magic
 import sys
 import os
 
@@ -30,11 +31,11 @@ def main():
             for file in files:
                 s3_path = os.path.join(root, file).split("build/", 1)[1]
                 print(s3_path)
-                if file.lower().endswith((".png", ".jpg", ".jpeg")):
-                    extra_args = {"ACL": "public-read"}
-                else:
-                    extra_args = {"ContentType": "Text/html",
-                                  "ACL": "public-read"}
+                
+                contentType = magic.from_file(file, mime=True)
+                print(f"ContentType is {contentType} for file {file}")
+                extra_args = {"ContentType": f"{contentType}",
+                              "ACL": "public-read"}
                 uploadDirectory(
                     s3,
                     os.path.join(root, file),
