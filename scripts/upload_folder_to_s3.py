@@ -70,6 +70,7 @@ main()
 
 
 # try:
+
 #     s3 = session.resource("s3")
 #     for root, dirs, files in os.walk(local_path):
 #         for file in files:
