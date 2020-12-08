@@ -41,11 +41,12 @@ def main():
         for root, dirs, files in os.walk(local_path):
             for file in files:
 
-                s3_path = os.path.join(root, file).rsplit("build", 1)[1]
+                s3_path = os.path.join(root, file).rsplit("build/", 1)[1]
 
                 print(s3_path)
                 print(f"root: {os.path.join(root, file)}")
                 contentType = magic.from_file(os.path.join(root, file), mime=True)
+                contentType = setContentType(s3_path, contentType)
                 print(f"ContentType is {contentType} for file {s3_path}")
                 extra_args = {"ContentType": f"{contentType}",
                               "ACL": "public-read"}
