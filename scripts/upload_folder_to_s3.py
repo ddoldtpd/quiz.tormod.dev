@@ -33,7 +33,8 @@ def main():
                 s3_path = "." + os.path.join(root, file).rsplit("build", 1)[1]
 
                 print(s3_path)
-                contentType = magic.from_file(s3_path, mime=True)
+                print(f"root: {os.path.join(root, file)}")
+                contentType = magic.from_file(os.path.join(root, file), mime=True)
                 print(f"ContentType is {contentType} for file {s3_path}")
                 extra_args = {"ContentType": f"{contentType}",
                               "ACL": "public-read"}
