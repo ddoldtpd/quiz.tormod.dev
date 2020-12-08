@@ -48,7 +48,10 @@ def main():
                               "ACL": "public-read"}
 
                 s3_path = file_origin.rsplit("build/", 1)[1]
-                print(f"Arguments for upload => s3: {s3} file: {file_origin}, bucket: {bucket_name}, s3_path: {s3_path}, extra_args:{extra_args}")
+                message = f"Arguments for upload => s3: {s3} file: {file_origin}" \
+                          f"bucket: {bucket_name}, s3_path: {s3_path}, extra_args:{extra_args}"
+                print(message)
+
                 uploadDirectory(
                     s3,
                     file_origin,
@@ -64,35 +67,3 @@ def main():
 
 
 main()
-
-
-# try:
-
-#     s3 = session.resource("s3")
-#     for root, dirs, files in os.walk(local_path):
-#         for file in files:
-#             file_origin = os.path.join(root, file)
-#             print(f"Local file path: {file_origin}")
-
-#             contentType = magic.from_file(file_origin, mime=True)
-#             contentType = setContentType(file_origin, contentType)
-#             extra_args = {"ContentType": f"{contentType}",
-#                           "ACL": "public-read"}
-#             print(f"ContentType is {contentType} for file {file_origin}")
-
-#             s3_path = file_origin.rsplit("build/", 1)[1]
-#             print(f"""s3: {s3}, file: {file_origin}, bucket: {bucket_name},
-#                    s3_path: {s3_path}, extra_args:{extra_args}""")
-
-#             uploadDirectory(
-#                 s3,
-#                 file_origin,
-#                 bucket_name,
-#                 s3_path,
-#                 extra_args
-#             )
-
-# except Exception as e:
-#     print("Something went wrong when uploading to S3", e)
-
-# print("Done uploading")
