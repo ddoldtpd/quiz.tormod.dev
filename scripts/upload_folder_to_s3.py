@@ -11,7 +11,8 @@ def uploadDirectory(s3, path, bucket_name, s3_path, extra_args):
 
 
 def setContentType(file, contentType):
-    file_type = file.rsplit("./", 1)[1]
+    file_type = file.rsplit(".", 1)[1]
+    print(file_type)
 
     if file_type == 'css':
         contentType = 'text/css'
