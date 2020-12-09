@@ -1,0 +1,76 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn init
+
+PATH: 
+  /Users/fredriktormod/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Xamarin Workbooks.app/Contents/SharedSupport/path-bin:/Users/fredriktormod/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.16.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:137008:13)
+      at Interface.emit (events.js:310:20)
+      at Interface._ttyWrite (readline.js:893:16)
+      at ReadStream.onkeypress (readline.js:198:10)
+      at ReadStream.emit (events.js:310:20)
+      at emitKeys (internal/readline/utils.js:438:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1160:36)
+      at ReadStream.emit (events.js:310:20)
+      at addChunk (_stream_readable.js:286:12)
+
+npm manifest: 
+  {
+    "name": "quiz-app-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@testing-library/jest-dom": "^4.2.4",
+      "@testing-library/react": "^9.3.2",
+      "@testing-library/user-event": "^7.1.2",
+      "axios": "^0.20.0",
+      "bootstrap": "^4.5.3",
+      "dotenv": "^8.2.0",
+      "react": "^16.13.1",
+      "react-alert": "^7.0.2",
+      "react-dom": "^16.13.1",
+      "react-router-dom": "^5.2.0",
+      "react-scripts": "3.4.3",
+      "use-immer": "^0.4.1"
+    },
+    "scripts": {
+      "push": "yarn build && cp .env ./build/.env && git add . && git commit -a -m 'Build for production..' && git push",
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": "react-app"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
