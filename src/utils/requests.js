@@ -2,8 +2,16 @@ import axios from 'axios';
 // import { catchAsync } from './catchAsync';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL =
-  process.env.REACT_APP_BACKENDURL + process.env.REACT_APP_URLEXTENSION || '';
+
+console.log(process.env.REACT_APP_ENV);
+if (process.env.ENV == 'production') {
+  axios.defaults.baseURL =
+    process.env.REACT_APP_BACKENDURL + process.env.REACT_APP_URLEXTENSION || '';
+} else {
+  axios.defaults.baseURL =
+    process.env.REACT_APP_BACKENDURL_DEV +
+      process.env.REACT_APP_URLEXTENSION_DEV || '';
+}
 
 export const getQuestions = async () => {
   try {
@@ -73,7 +81,7 @@ export const login = async (email, password) => {
       {
         withCredentials: true,
         headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:3001',
+          'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
           'Content-Type': 'application/json'
         }
       }
