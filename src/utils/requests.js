@@ -4,7 +4,7 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 console.log(process.env.REACT_APP_ENV);
-if (process.env.ENV == 'production') {
+if (process.env.REACT_APP_ENV == 'production') {
   axios.defaults.baseURL =
     process.env.REACT_APP_BACKENDURL + process.env.REACT_APP_URLEXTENSION || '';
 } else {
