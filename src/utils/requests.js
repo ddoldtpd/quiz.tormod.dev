@@ -78,7 +78,7 @@ export const login = async (email, password) => {
         password
       },
       {
-        withCredentials: false,
+        withCredentials: true,
         headers: {
           'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
           'Content-Type': 'application/json'
