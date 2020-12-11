@@ -3,7 +3,6 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-console.log(process.env.REACT_APP_ENV);
 if (process.env.REACT_APP_ENV == 'production') {
   axios.defaults.baseURL =
     process.env.REACT_APP_BACKENDURL + process.env.REACT_APP_URLEXTENSION || '';
@@ -79,7 +78,7 @@ export const login = async (email, password) => {
         password
       },
       {
-        withCredentials: true,
+        withCredentials: false,
         headers: {
           'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
           'Content-Type': 'application/json'
