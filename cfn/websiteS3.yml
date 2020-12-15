@@ -92,7 +92,7 @@ Resources:
           ForwardedValues:
             QueryString: true
             Cookies:
-              Forward: none
+              Forward: all
           ViewerProtocolPolicy: redirect-to-https
         CacheBehaviors:
           - PathPattern: /api/*
