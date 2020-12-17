@@ -92,7 +92,7 @@ Resources:
           ForwardedValues:
             QueryString: true
             Cookies:
-              Forward: all
+              Forward: none
           ViewerProtocolPolicy: redirect-to-https
         CacheBehaviors:
           - PathPattern: /api/*
@@ -104,10 +104,12 @@ Resources:
               - PATCH
               - POST
               - PUT
-            ForwardedValues:
-              QueryString: false
-            CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+            # CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
             TargetOriginId: APIOrigin
+            ForwardedValues:
+              QueryString: true
+              Cookies:
+                Forward: all
             ViewerProtocolPolicy: redirect-to-https
             Compress: false
         PriceClass: PriceClass_All
