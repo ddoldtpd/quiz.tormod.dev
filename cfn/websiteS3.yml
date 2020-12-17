@@ -64,6 +64,12 @@ Resources:
               AWS: !Sub 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginIdentity}'
             Action: 's3:GetObject'
             Resource: !Join ['', ['arn:aws:s3:::', !Ref WebsiteBucket, '/*']]
+          - Sid: PageNotFound
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginIdentity}'
+            Action: 's3:ListBucket'
+            Resource: !Join ['', ['arn:aws:s3:::', !Ref WebsiteBucket]]
           - Sid: DeployStaticFilesAccess
             Effect: Allow
             Principal:
@@ -89,6 +95,11 @@ Resources:
               OriginProtocolPolicy: https-only
               OriginSSLProtocols:
                 - TLSv1.2
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            ErrorCachingMinTTL: 300
         Enabled: true
         HttpVersion: 'http2'
         DefaultRootObject: index.html
