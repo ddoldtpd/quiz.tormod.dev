@@ -152,7 +152,7 @@ Resources:
         Comment: Cloudfront Distribution for redirecting to domain.
         Origins:
           - Id: S3Redirect
-            DomainName: !Join ['', [!Ref RedirectBucket , '.s3-website-', !Sub '${AWS::Region}', '.amazonaws.com']] # tormod.dev-redirect.s3-website-eu-west-1.amazonaws.com # 
+            DomainName: !Join ['', [!Ref RedirectBucket , '.s3-website-', !Sub '${AWS::Region}', '.amazonaws.com']] 
             CustomOriginConfig:
                 OriginProtocolPolicy: http-only
         Enabled: true
