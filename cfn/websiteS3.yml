@@ -32,6 +32,23 @@ Resources:
       Tags:
         - Key: description
           Value: "quiz website bucket"
+
+  RedirectBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Join ['', [!Ref BucketName, '-redirect']] 
+      AccessControl: Private
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Ref DomainName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: description
+          Value: "redirect quiz website bucket"
   
   BucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -77,7 +94,6 @@ Resources:
         DefaultRootObject: index.html
         Aliases:
           - !Ref DomainName
-          - !Join ['', ['www.', !Ref DomainName]]
         DefaultCacheBehavior:
           AllowedMethods:
             - DELETE
@@ -117,6 +133,38 @@ Resources:
           AcmCertificateArn: arn:aws:acm:us-east-1:467096703885:certificate/0dda5204-c0ce-4bed-92e4-be316aabd1f2
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2019
+  
+  RedirectCloudfront:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: Cloudfront Distribution for redirecting to domain.
+        Origins:
+          - Id: S3Redirect
+            DomainName: !Join ['', [!Ref RedirectBucket , '.s3-website-', !Sub '${AWS::Region}', '.amazonaws.com']] # tormod.dev-redirect.s3-website-eu-west-1.amazonaws.com # 
+            CustomOriginConfig:
+                OriginProtocolPolicy: http-only
+        Enabled: true
+        HttpVersion: 'http2'
+        Aliases:
+          - !Join ['', ['www.', !Ref DomainName]]
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          Compress: true
+          TargetOriginId: S3Redirect
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        PriceClass: PriceClass_All
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:467096703885:certificate/0dda5204-c0ce-4bed-92e4-be316aabd1f2
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2019
 
   CloudFrontOriginIdentity:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
@@ -144,7 +192,7 @@ Resources:
           Type: A
           AliasTarget:
             HostedZoneId: Z2FDTNDATAQYW2
-            DNSName: !GetAtt WebsiteCloudfront.DomainName
+            DNSName: !GetAtt RedirectCloudfront.DomainName
 
 Outputs:
   S3WebsiteBucket:
@@ -152,3 +200,8 @@ Outputs:
     Value: !Ref WebsiteBucket
     Export:
       Name: !Sub '${AWS::StackName}-WebsiteBucket'
+  RedirectBucket:
+    Description: S3 to host static files for website.
+    Value: !Ref RedirectBucket
+    Export:
+      Name: !Sub '${AWS::StackName}-RedirectBucket'
