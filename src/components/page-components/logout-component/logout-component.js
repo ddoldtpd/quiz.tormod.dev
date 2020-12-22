@@ -9,6 +9,7 @@ const LogOutComponent = () => {
   const handleClick = async e => {
     e.preventDefault();
     appDispatch({ type: 'logout' });
+    appDispatch({ type: 'flashMessage', value: 'Successfully logged in!' });
   };
 
   return (

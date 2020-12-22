@@ -22,6 +22,7 @@ const LoginComponent = props => {
           id: response.data.user._id
         }
       });
+      appDispatch({ type: 'flashMessage', value: 'Successfully logged in!' });
       console.log('logged in');
     } else {
     }
