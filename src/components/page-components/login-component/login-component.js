@@ -22,7 +22,7 @@ const LoginComponent = props => {
           id: response.data.user._id
         }
       });
-      appDispatch({ type: 'flashMessage', value: 'Successfully logged in!' });
+      appDispatch({ type: 'flashMessage', value: 'Successfully logged out!' });
       console.log('logged in');
     } else {
     }
@@ -42,7 +42,6 @@ const LoginComponent = props => {
             autoComplete="off"
           />
         </div>
-
         <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
           <input
             type="password"
@@ -53,8 +52,13 @@ const LoginComponent = props => {
             placeholder="Password"
           />
         </div>
-        <div className="col-md-auto">
+        <div className="col-md-auto mr-0 pr-md-0 mb-3 mb-md-0">
           <button className="btn btn-success btn-sm">Sign In</button>
+        </div>
+        <div className="col-md-auto">
+          <Link className="btn btn-success btn-sm" to="/sign-up">
+            Sign Up
+          </Link>
         </div>
       </div>
     </form>
