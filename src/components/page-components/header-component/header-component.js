@@ -11,31 +11,16 @@ const Header = () => {
   const appState = useContext(StateContext);
 
   return (
-    <div >
-      <nav>
-        <div className="logo">
-          <h4>Quiz-App</h4>
-        </div>
-        <ul className="nav-links">
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-
-          <li>
-            <Link to="/profile">My page</Link>
-          </li>
-          <li>
-            <Link to="/score">Score</Link>
-          </li>
-          <li>
-            {appState.loggedIn ? <LogOutComponent /> : <LoginComponent />}
-          </li>
-          {/* <li>
-            {appState.loggedIn ? <SignUpComponent /> : <LoginComponent />}
-          </li> */}
-        </ul>
-      </nav>
-    </div>
+    <header className="header-bar bg-primary mb-3">
+      <div className="container d-flex flex-column flex-md-row align-items-center p-3">
+        <h4 className="my-0 mr-md-auto font-weight-normal">
+          <Link to="/" className="text-white">
+            Quiz App
+          </Link>
+        </h4>
+        {appState.loggedIn ? <LogOutComponent /> : <LoginComponent />}
+      </div>
+    </header>
   );
 };
 

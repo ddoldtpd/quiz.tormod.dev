@@ -28,36 +28,69 @@ const LoginComponent = props => {
   };
 
   return (
-    <div>
-      <form>
-        <label>
-          Name:
+    <form onSubmit={handleSubmit} className="mb-0 pt-2 pt-md-0">
+      <div className="row align-items-center">
+        <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
           <input
             type="text"
             onChange={e => setUsername(e.target.value)}
             name="Username"
             value={username}
+            className="form-control form-control-sm input-dark"
+            placeholder="Username"
+            autoComplete="off"
           />
-        </label>
-        <label>
-          Password:
+        </div>
+
+        <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
           <input
             type="password"
             name="password"
             onChange={e => setPassword(e.target.value)}
             value={password}
+            className="form-control form-control-sm input-dark"
+            placeholder="Password"
           />
-        </label>
-        <input type="submit" onClick={handleSubmit}></input>
-      </form>
-      <Link className="" to="/sign-up">
-        Sign up
-      </Link>
-    </div>
+        </div>
+        <div className="col-md-auto">
+          <button className="btn btn-success btn-sm">Sign In</button>
+        </div>
+      </div>
+    </form>
+    // <Link className="" to="/sign-up">
+    //   Sign up
+    // </Link>
   );
 };
 
 export default LoginComponent;
+
+// <form onSubmit={handleSubmit} className="mb-0 pt-2 pt-md-0">
+//   <div className="row align-items-center">
+//     <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
+//       <input
+//         onChange={e => setUsername(e.target.value)}
+//         name="username"
+//         className="form-control form-control-sm input-dark"
+//         type="text"
+//         placeholder="Username"
+//         autoComplete="off"
+//       />
+//     </div>
+//     <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
+//       <input
+//         onChange={e => setPassword(e.target.value)}
+//         name="password"
+//         className="form-control form-control-sm input-dark"
+//         type="password"
+//         placeholder="Password"
+//       />
+//     </div>
+//     <div className="col-md-auto">
+//       <button className="btn btn-success btn-sm">Sign In</button>
+//     </div>
+//   </div>
+// </form>;
 
 // Fail
 // {
