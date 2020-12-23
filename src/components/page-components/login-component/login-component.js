@@ -62,9 +62,6 @@ const LoginComponent = props => {
         </div>
       </div>
     </form>
-    // <Link className="" to="/sign-up">
-    //   Sign up
-    // </Link>
   );
 };
 
