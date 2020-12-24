@@ -1,0 +1,18 @@
+$light-brown: #dabcaa;
+$dark-grey: #5f6162;
+
+body {
+  margin: 1rem 0rem;
+
+  label:not(.input-group-text) {
+    margin-top: 10px;
+  }
+
+  .my-select {
+    background-color: $light-brown;
+    color: $dark-grey;
+    border: 0 none;
+    border-radius: 20px;
+    padding: 6px 20px;
+  }
+}

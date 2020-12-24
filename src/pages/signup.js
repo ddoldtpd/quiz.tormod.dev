@@ -120,7 +120,7 @@ function Signup() {
         if (draft.passwordConfirm.value.length < 6) {
           draft.passwordConfirm.hasErrors = true;
           draft.passwordConfirm.message = 'password to short';
-        } else if (draft.passwordConfirm.value != draft.password.value) {
+        } else if (draft.passwordConfirm.value !== draft.password.value) {
           draft.passwordConfirm.hasErrors = true;
           draft.passwordConfirm.message = 'passwords do not match!';
         }
@@ -137,6 +137,7 @@ function Signup() {
           draft.submitCount++;
         }
         break;
+      default:
     }
   }
 
@@ -190,7 +191,7 @@ function Signup() {
         console.log('hello');
         dispatch({
           type: 'usernameUniqueResults',
-          value: response.data.message != 'OK'
+          value: response.data.message !== 'OK'
         });
       };
       usernameExist();
@@ -205,7 +206,7 @@ function Signup() {
         const response = await DoesEmailExist(state.email.value);
         dispatch({
           type: 'emailUniqueResults',
-          value: response.data.message != 'OK'
+          value: response.data.message !== 'OK'
         });
       };
       emailExist();
@@ -222,13 +223,8 @@ function Signup() {
           password: state.password.value,
           passwordConfirm: state.passwordConfirm.value
         });
-        console.log('Response', response);
-        console.log('Response', response.data.user.name);
-        console.log('Response', response.data.user.email);
-        console.log('Response', response.data.user._id);
 
-        // appDispatch({ type: '', value: '' });
-        if (response.status == 'success') {
+        if (response.status === 'success') {
           appDispatch({
             type: 'login',
             value: {
@@ -237,17 +233,6 @@ function Signup() {
               id: response.data.user._id
             }
           });
-
-          // active: true
-          // email: "real@test.com"
-          // name: "real"
-          // role: "public"
-          // userScore:
-          // answeredQuestions: []
-          // score: 0
-          // __proto__: Object
-          // __v: 0
-          // _id: "5fadc4f94b7fa30011a5b67c"
 
           appDispatch({
             type: 'flashMessage',
@@ -259,34 +244,6 @@ function Signup() {
       return;
     }
   }, [state.submitCount]);
-  // useEffect(() => {
-  //   if (state.submitCount) {
-  //     // Send requests here
-  //     const ourRequest = Axios.CancelToken.source();
-  //     async function fetchResults() {
-  //       try {
-  //         const response = await Axios.post(
-  //           '/register',
-  //           {
-  //             username: state.username.value,
-  //             email: state.email.value,
-  //             password: state.password.value
-  //           },
-  //           { cancelToken: ourRequest.token }
-  //         );
-  //         appDispatch({ type: 'login', data: response.data });
-  //         appDispatch({
-  //           type: 'flashMessage',
-  //           value: 'Welcome to your new account!'
-  //         });
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //     fetchResults();
-  //     return () => ourRequest.cancel();
-  //   }
-  // }, [state.submitCount]);
 
   function handleSubmit(e) {
     e.preventDefault();

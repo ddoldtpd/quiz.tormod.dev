@@ -3,7 +3,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-if (process.env.REACT_APP_ENV == 'production') {
+if (process.env.REACT_APP_ENV === 'production') {
   axios.defaults.baseURL =
     process.env.REACT_APP_BACKENDURL + process.env.REACT_APP_URLEXTENSION || '';
 } else {
@@ -46,6 +46,42 @@ export const getMyQuestions = async () => {
       withCredentials: true,
       'Content-Type': 'application/json'
     });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createQuestion = async (
+  title,
+  question,
+  correctAnswer,
+  answerOptions,
+  difficulty
+) => {
+  try {
+    console.log(
+      'Sending',
+      title,
+      question,
+      correctAnswer,
+      answerOptions,
+      difficulty
+    );
+    const response = await axios.post(
+      '/questions',
+      {
+        title,
+        question,
+        correctAnswer,
+        answerOptions,
+        difficulty
+      },
+      {
+        withCredentials: true,
+        'Content-Type': 'application/json'
+      }
+    );
     return response.data;
   } catch (error) {
     console.log(error);

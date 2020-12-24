@@ -14,6 +14,9 @@ const LogOutComponent = () => {
 
   return (
     <div className="flex-row my-3 my-md-0">
+      <Link className="btn btn-sm btn-success mr-2" to="/create-question">
+        Create Question
+      </Link>{' '}
       <Link className="btn btn-sm btn-success mr-2" to="/profile">
         Profile
       </Link>{' '}

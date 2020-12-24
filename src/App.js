@@ -4,6 +4,7 @@ import Footer from './components/page-components/footer-component/footer-compone
 import { useImmerReducer } from 'use-immer';
 import Home from './pages/home';
 import Profile from './pages/profile';
+import Question from './pages/createQuestion';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import StateContext from './utils/StateContext';
@@ -66,6 +67,9 @@ const App = () => {
           <Switch>
             <Route path="/" exact>
               <Home />
+            </Route>
+            <Route path="/create-question">
+              <Question />
             </Route>
             <Route path="/profile">
               <Profile />

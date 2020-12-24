@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/js/bootstrap.js'; // skip this if you do not use bootstrap modals
+// import $ from 'jquery'; // skip this if you do not use bootstrap modals
+// import Popper from 'popper.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
