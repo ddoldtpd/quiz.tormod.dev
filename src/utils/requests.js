@@ -1,7 +1,8 @@
 import axios from 'axios';
 // import { catchAsync } from './catchAsync';
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
+console.log('ENV: ', process.env.REACT_APP_ENV);
 
 if (process.env.REACT_APP_ENV === 'production') {
   axios.defaults.baseURL =
