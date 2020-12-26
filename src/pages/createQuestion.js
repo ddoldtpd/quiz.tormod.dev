@@ -21,9 +21,7 @@ function CreatePost(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      let response;
-      response = DoesQuestionExist(title);
-      console.log(response);
+      DoesQuestionExist(title);
       createQuestion(title, body, answer, answerOptions, difficulty);
       appDispatch({
         type: 'flashMessage',

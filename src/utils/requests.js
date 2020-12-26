@@ -43,7 +43,7 @@ export const DoesUsernameExist = async username => {
 
 export const DoesQuestionExist = async title => {
   try {
-    const response = await axios.get(
+    const response = await axios.post(
       `/questions/does-question-exist`,
       {
         title
