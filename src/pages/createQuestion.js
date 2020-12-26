@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { createQuestion } from '../utils/requests';
+import { createQuestion, DoesQuestionExist } from '../utils/requests';
 import Page from '../pages/page';
 import Axios from 'axios';
 import { withRouter } from 'react-router-dom';
@@ -21,6 +21,9 @@ function CreatePost(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      let response;
+      response = DoesQuestionExist(title);
+      console.log(response);
       createQuestion(title, body, answer, answerOptions, difficulty);
       appDispatch({
         type: 'flashMessage',

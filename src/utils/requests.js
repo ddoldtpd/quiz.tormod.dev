@@ -41,6 +41,27 @@ export const DoesUsernameExist = async username => {
   }
 };
 
+export const DoesQuestionExist = async title => {
+  try {
+    const response = await axios.get(
+      `/questions/does-question-exist`,
+      {
+        title
+      },
+      {
+        withCredentials: true,
+        headers: {
+          'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getMyQuestions = async () => {
   try {
     const response = await axios.get('/users/me/questions', {
