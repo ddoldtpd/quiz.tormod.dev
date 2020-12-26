@@ -80,7 +80,10 @@ export const createQuestion = async (
       },
       {
         withCredentials: true,
-        'Content-Type': 'application/json'
+        headers: {
+          'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
+          'Content-Type': 'application/json'
+        }
       }
     );
     return response.data;
