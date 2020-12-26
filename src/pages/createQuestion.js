@@ -33,7 +33,8 @@ function CreatePost(props) {
     }
   }
 
-  const handleAddAnswer = () => {
+  const handleAddAnswer = e => {
+    e.preventDefault();
     setAnswerOptions(answerOptions.concat(input));
     document.getElementById('answer-options').value = '';
   };
