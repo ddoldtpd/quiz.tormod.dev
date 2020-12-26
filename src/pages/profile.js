@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import { useParams, NavLink, Switch, Route } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
 import { getMyQuestions } from '../utils/requests';
 import DispatchContext from '../utils/DispatchContext';
 import StateContext from '../utils/StateContext';
@@ -16,17 +17,47 @@ const Profile = () => {
     setQuestions(resp.data.data);
   };
 
+  useEffect(() => {
+    const getQuestions = async () => {
+      const response = await getMyQuestions();
+      if (response) {
+        const questions = response.data.data;
+        console.log('Questions', questions);
+        questions.forEach(el => {
+          setQuestions(questions.concat(el));
+        });
+      } else {
+        console.log('no questions for this user');
+      }
+    };
+    getQuestions();
+  }, []);
+
   return (
-    <Page>
-      <h2>Profile</h2>
-      <div>
-        <button onClick={handleClick}>Get questions</button>
-        <div>
-          {questions.map(el => {
-            return <div key={el._id}>{el.title}</div>;
-          })}
-        </div>
+    <Page title="Profile Screen">
+      <h2>{appState.user.username}</h2>
+      {/* <h2>{appState}</h2> */}
+
+      <div className="profile-nav nav nav-tabs pt-2 mb-4">
+        <NavLink exact to="#" className="nav-item nav-link">
+          Questions: {/* {state.profileData.counts.postCount} */}
+        </NavLink>
+        <NavLink to="#" className="nav-item nav-link">
+          Answered Questions: {/* state.profileData.counts.followerCount */}
+        </NavLink>
       </div>
+
+      <Switch>
+        <Route exact path="/profile/:username">
+          {/* <ProfilePosts /> */}
+        </Route>
+        <Route path="/profile/:username/followers">
+          {/* <ProfileFollowers /> */}
+        </Route>
+        <Route path="/profile/:username/following">
+          {/* <ProfileFollowing /> */}
+        </Route>
+      </Switch>
     </Page>
   );
 };

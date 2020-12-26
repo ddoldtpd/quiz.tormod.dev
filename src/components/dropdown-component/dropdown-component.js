@@ -16,7 +16,7 @@ function DropDown(props) {
           onChange={handleChange}
           className="custom-select my-select"
         >
-          <option selected>Choose...</option>
+          <option defaultValue>Choose...</option>
           <option value="Easy">Easy</option>
           <option value="Medium">Medium</option>
           <option value="Hard">Hard</option>

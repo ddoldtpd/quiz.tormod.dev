@@ -56,7 +56,7 @@ const LoginComponent = props => {
           <button className="btn btn-success btn-sm">Sign In</button>
         </div>
         <div className="col-md-auto">
-          <Link className="btn btn-success btn-sm" to="/sign-up">
+          <Link className="btn btn-secondary btn-sm" to="/sign-up">
             Sign Up
           </Link>
         </div>
