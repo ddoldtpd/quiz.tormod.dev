@@ -36,7 +36,6 @@ const Profile = () => {
   return (
     <Page title="Profile Screen">
       <h2>{appState.user.username}</h2>
-      {/* <h2>{appState}</h2> */}
 
       <div className="profile-nav nav nav-tabs pt-2 mb-4">
         <NavLink exact to="#" className="nav-item nav-link">
