@@ -17,7 +17,6 @@ export const getQuestions = async () => {
   try {
     const response = await axios.get('/questions');
     return response.data;
-    // return response.
   } catch (error) {
     console.log(error);
   }
@@ -43,19 +42,9 @@ export const DoesUsernameExist = async username => {
 
 export const DoesQuestionExist = async title => {
   try {
-    const response = await axios.post(
-      `/questions/does-question-exist`,
-      {
-        title
-      },
-      {
-        withCredentials: true,
-        headers: {
-          'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
-          'Content-Type': 'application/json'
-        }
-      }
-    );
+    const response = await axios.post('/questions/does-question-exist', {
+      title
+    });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -103,11 +92,12 @@ export const createQuestion = async (
       {
         withCredentials: true,
         headers: {
-          'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
+          'Access-Control-Allow-Origin': '*', //process.env.REACT_APP_BACKENDURL,
           'Content-Type': 'application/json'
         }
       }
     );
+    console.log('response:', response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -142,7 +132,7 @@ export const login = async (email, password) => {
       {
         withCredentials: true,
         headers: {
-          'Access-Control-Allow-Origin': process.env.REACT_APP_BACKENDURL,
+          'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json'
         }
       }

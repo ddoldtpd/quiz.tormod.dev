@@ -4,7 +4,8 @@ function DynamicList(props) {
   const items = props.items;
   const setItems = props.setItems;
 
-  const handleRemoveFields = id => {
+  const handleRemoveFields = (e, id) => {
+    e.preventDefault();
     const values = [...items];
     values.splice(
       values.findIndex(value => value.id === id),
@@ -23,7 +24,7 @@ function DynamicList(props) {
               <button
                 className="btn btn-danger"
                 disabled={items.length === 0}
-                onClick={() => handleRemoveFields(idx)}
+                onClick={e => handleRemoveFields(e, idx)}
               >
                 X
               </button>
