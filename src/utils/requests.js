@@ -82,13 +82,11 @@ export const createQuestion = async (
 
     const response = await axios.post(
       '/questions',
-      {
-        title,
-        question,
-        correctAnswer,
-        answerOptions,
-        difficulty
-      },
+      title,
+      question,
+      correctAnswer,
+      answerOptions,
+      difficulty,
       {
         withCredentials: true,
         headers: {

@@ -206,6 +206,7 @@ function CreatePost(props) {
   const handleAddAnswer = e => {
     e.preventDefault();
     setAnswerOptions(answerOptions.concat(input));
+    setInput('');
     document.getElementById('answer-options').value = '';
   };
 
