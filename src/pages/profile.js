@@ -1,60 +1,59 @@
-import { useParams, NavLink, Switch, Route } from 'react-router-dom';
+import ProfileQuestion from '../components/page-components/profileQuestion-component/profileQuestion';
+import { NavLink, Switch, Route } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from 'react';
-import { getMyQuestions } from '../utils/requests';
+import { getMe } from '../utils/requests';
 import DispatchContext from '../utils/DispatchContext';
 import StateContext from '../utils/StateContext';
 import Page from './page';
+import ProfileAnswer from '../components/page-components/profileAnswer-component/profileAnswer';
+import LoadingDotsIcon from '../components/loadingdots-component/LoadingDotsIcon';
 
 const Profile = () => {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [userScore, setuserScore] = useState(NaN);
 
-  const [questions, setQuestions] = useState([]);
-
-  const handleClick = async () => {
-    const resp = await getMyQuestions();
-    console.log(resp.data.data);
-    setQuestions(resp.data.data);
-  };
+  // if (isLoading) return <LoadingDotsIcon />;
 
   useEffect(() => {
-    const getQuestions = async () => {
-      const response = await getMyQuestions();
+    const getme = async () => {
+      const response = await getMe();
       if (response) {
-        const questions = response.data.data;
-        console.log('Questions', questions);
-        questions.forEach(el => {
-          setQuestions(questions.concat(el));
-        });
+        const info = response.data.data;
+        setuserScore(info.userScore.score);
       } else {
-        console.log('no questions for this user');
+        console.log('no info for this user');
       }
+      setIsLoading(false);
     };
-    getQuestions();
+    getme();
   }, []);
 
   return (
     <Page title="Profile Screen">
-      <h2>{appState.user.username}</h2>
-
+      <div className="row d-flex align-items-center">
+        <h2>{appState.user.username}</h2>&nbsp;&nbsp;&nbsp;&nbsp;
+        {/* <div>Score: {userScore === NaN }</div> */}
+        <div>Score:</div>&nbsp;
+        <div>{isNaN(userScore) && <LoadingDotsIcon />}</div>
+        <div>{!isNaN(userScore) && userScore}</div>
+      </div>
       <div className="profile-nav nav nav-tabs pt-2 mb-4">
-        <NavLink exact to="#" className="nav-item nav-link">
-          Questions: {/* {state.profileData.counts.postCount} */}
+        <NavLink exact to="/profile" className="nav-item nav-link">
+          My Questions: {/* {state.profileData.counts.postCount} */}
         </NavLink>
-        <NavLink to="#" className="nav-item nav-link">
+        <NavLink to="/profile/answered-questions" className="nav-item nav-link">
           Answered Questions: {/* state.profileData.counts.followerCount */}
         </NavLink>
       </div>
 
       <Switch>
-        <Route exact path="/profile/:username">
-          {/* <ProfilePosts /> */}
+        <Route exact path="/profile">
+          <ProfileQuestion />
         </Route>
-        <Route path="/profile/:username/followers">
-          {/* <ProfileFollowers /> */}
-        </Route>
-        <Route path="/profile/:username/following">
-          {/* <ProfileFollowing /> */}
+        <Route path="/profile/answered-questions">
+          <ProfileAnswer />
         </Route>
       </Switch>
     </Page>

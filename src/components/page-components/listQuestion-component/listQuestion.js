@@ -3,10 +3,20 @@ import { Link } from 'react-router-dom';
 
 function QuestionList(props) {
   const question = props.question;
-  const date = new Date(question.createdDate);
-  const dateFormatted = `${
-    date.getMonth() + 1
-  }/${date.getDate()}/${date.getFullYear()}`;
+  const difficulty = question.difficulty;
+  const timesAnswered = question.timesAnswered;
+  const timesCorrectAnswered = question.timesCorrectAnswered;
+
+  // answerOptions: ["2021"]
+  // author: "5fd3a7b98990050008e5e875"
+  // correctAnswer: "2020"
+  // difficulty: "easy"
+  // question: "What year is it?"
+  // timesAnswered: 0
+  // timesCorrectAnswered: 0
+  // title: "Live question from Prod"
+  // __v: 0
+  // _id: "5fedd4c00c51d80008c8757a"
 
   return (
     <Link
@@ -14,10 +24,14 @@ function QuestionList(props) {
       to={`/question/${question._id}`}
       className="list-group-item list-group-item-action"
     >
-      <strong>{question.title}</strong>{' '}
+      <strong>{question.title}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
       <span className="text-muted small">
-        {!props.noAuthor && <>by {question.author.username}</>} on{' '}
-        {dateFormatted}{' '}
+        {
+          <>
+            Difficulty: {difficulty}, Answered {timesAnswered} times
+          </>
+        }{' '}
+        and Correctly answered {timesCorrectAnswered}{' '}
       </span>
     </Link>
   );

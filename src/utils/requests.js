@@ -144,6 +144,25 @@ export const login = async (email, password) => {
   }
 };
 
+export const getMe = async () => {
+  let response;
+  try {
+    response = await axios.get('/users/me', {
+      withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log('API not responding');
+    console.log(error);
+    return { status: 'failed' };
+  }
+};
+
 export const getRandomQuestion = async () => {
   let response;
   try {
