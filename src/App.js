@@ -11,6 +11,8 @@ import StateContext from './utils/StateContext';
 import DispatchContext from './utils/DispatchContext';
 import Signup from './pages/signup';
 import FlashMessages from './utils/FlashMessage';
+import NotFound from './pages/notFound';
+import editQuestion from './pages/editQuestion';
 
 const App = () => {
   const initialState = {
@@ -68,6 +70,9 @@ const App = () => {
             <Route path="/" exact>
               <Home />
             </Route>
+            <Route path="/post/:id/edit" exact>
+              <editQuestion />
+            </Route>
             <Route path="/create-question">
               <Question />
             </Route>
@@ -76,6 +81,9 @@ const App = () => {
             </Route>
             <Route path="/sign-up">
               <Signup />
+            </Route>
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
           <Footer />
