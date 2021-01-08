@@ -113,8 +113,8 @@ export const createQuestion = async (
 
 export const editQuestion = async sendObject => {
   try {
-    const title = sendObject.id;
-    const question = sendObject.title;
+    const title = sendObject.title;
+    const question = sendObject.question;
     const correctAnswer = sendObject.correctAnswer;
     const difficulty = sendObject.difficulty;
     const answerOptions = sendObject.answerOptions;
