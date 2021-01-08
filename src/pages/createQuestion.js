@@ -54,6 +54,9 @@ function CreatePost(props) {
         if (draft.title.value.length > 100) {
           draft.title.hasErrors = true;
           draft.title.message = 'Title is to long';
+        } else if (draft.title.value.length <= 10) {
+          draft.title.hasErrors = true;
+          draft.title.message = 'Question title is to short';
         } else if (draft.title.value.length === 0) {
           draft.title.hasErrors = true;
           draft.title.message = 'Question must have a title';
