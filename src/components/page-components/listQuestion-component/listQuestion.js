@@ -21,7 +21,7 @@ function QuestionList(props) {
   return (
     <Link
       onClick={props.onClick}
-      to={`/question/${question._id}`}
+      to={`/question/${question._id}/edit`}
       className="list-group-item list-group-item-action"
     >
       <strong>{question.title}</strong> &nbsp;&nbsp;&nbsp;&nbsp;

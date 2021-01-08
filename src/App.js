@@ -12,7 +12,7 @@ import DispatchContext from './utils/DispatchContext';
 import Signup from './pages/signup';
 import FlashMessages from './utils/FlashMessage';
 import NotFound from './pages/notFound';
-import editQuestion from './pages/editQuestion';
+import EditQuestion from './pages/editQuestion';
 
 const App = () => {
   const initialState = {
@@ -70,8 +70,8 @@ const App = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/post/:id/edit" exact>
-              <editQuestion />
+            <Route path="/question/:id/edit" exact>
+              <EditQuestion />
             </Route>
             <Route path="/create-question">
               <Question />

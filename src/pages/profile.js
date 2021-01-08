@@ -19,11 +19,12 @@ const Profile = () => {
   useEffect(() => {
     const getme = async () => {
       const response = await getMe();
-      if (response) {
+      if (response.status === 'success') {
         const info = response.data.data;
         setuserScore(info.userScore.score);
       } else {
         console.log('no info for this user');
+        setuserScore(0);
       }
       setIsLoading(false);
     };

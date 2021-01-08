@@ -22,6 +22,15 @@ export const getQuestions = async () => {
   }
 };
 
+export const getQuestion = async id => {
+  try {
+    const response = await axios.get(`/questions/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const DoesEmailExist = async email => {
   try {
     const response = await axios.get(`/users/does-email-exist/${email}`);
@@ -82,6 +91,46 @@ export const createQuestion = async (
 
     const response = await axios.post(
       '/questions',
+      title,
+      question,
+      correctAnswer,
+      answerOptions,
+      difficulty,
+      {
+        withCredentials: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*', //process.env.REACT_APP_BACKENDURL,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    console.log('response:', response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editQuestion = async (
+  id,
+  title,
+  question,
+  correctAnswer,
+  answerOptions,
+  difficulty
+) => {
+  try {
+    console.log(
+      'Sending',
+      title,
+      question,
+      correctAnswer,
+      answerOptions,
+      difficulty
+    );
+
+    const response = await axios.patch(
+      `/users/me/questions/${id}`,
       title,
       question,
       correctAnswer,
