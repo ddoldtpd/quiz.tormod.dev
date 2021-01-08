@@ -113,30 +113,48 @@ export const createQuestion = async (
 
 export const editQuestion = async sendObject => {
   try {
+    const title = sendObject.id;
+    const question = sendObject.title;
+    const correctAnswer = sendObject.correctAnswer;
+    const difficulty = sendObject.difficulty;
+    const answerOptions = sendObject.answerOptions;
     console.log(
       'Sending',
-      sendObject.title,
-      sendObject.question,
-      sendObject.correctAnswer,
-      sendObject.answerOptions,
-      sendObject.difficulty
+      sendObject.id,
+      title,
+      question,
+      correctAnswer,
+      answerOptions,
+      difficulty
     );
 
-    const response = await axios.patch(
-      `/users/me/questions/${sendObject.id}`,
-      sendObject.title,
-      sendObject.question,
-      sendObject.correctAnswer,
-      sendObject.answerOptions,
-      sendObject.difficulty,
-      {
-        withCredentials: true,
-        headers: {
-          'Access-Control-Allow-Origin': '*', //process.env.REACT_APP_BACKENDURL,
-          'Content-Type': 'application/json'
-        }
+    const response = await axios({
+      method: 'PATCH',
+      url: `/users/me/questions/${sendObject.id}`,
+      data: {
+        title,
+        question,
+        correctAnswer,
+        answerOptions,
+        difficulty
       }
-    );
+    });
+
+    // await axios.patch(
+    //   `/users/me/questions/${sendObject.id}`,
+    //   title,
+    //   question,
+    //   correctAnswer,
+    //   answerOptions,
+    //   difficulty,
+    //   {
+    //     withCredentials: true,
+    //     headers: {
+    //       'Access-Control-Allow-Origin': '*', //process.env.REACT_APP_BACKENDURL,
+    //       'Content-Type': 'application/json'
+    //     }
+    //   }
+    // );
     console.log('response:', response);
     return response.data;
   } catch (error) {
