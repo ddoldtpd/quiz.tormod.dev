@@ -111,31 +111,24 @@ export const createQuestion = async (
   }
 };
 
-export const editQuestion = async (
-  id,
-  title,
-  question,
-  correctAnswer,
-  answerOptions,
-  difficulty
-) => {
+export const editQuestion = async sendObject => {
   try {
     console.log(
       'Sending',
-      title,
-      question,
-      correctAnswer,
-      answerOptions,
-      difficulty
+      sendObject.title,
+      sendObject.question,
+      sendObject.correctAnswer,
+      sendObject.answerOptions,
+      sendObject.difficulty
     );
 
     const response = await axios.patch(
-      `/users/me/questions/${id}`,
-      title,
-      question,
-      correctAnswer,
-      answerOptions,
-      difficulty,
+      `/users/me/questions/${sendObject.id}`,
+      sendObject.title,
+      sendObject.question,
+      sendObject.correctAnswer,
+      sendObject.answerOptions,
+      sendObject.difficulty,
       {
         withCredentials: true,
         headers: {

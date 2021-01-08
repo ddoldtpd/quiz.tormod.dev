@@ -9,12 +9,9 @@ import ProfileAnswer from '../components/page-components/profileAnswer-component
 import LoadingDotsIcon from '../components/loadingdots-component/LoadingDotsIcon';
 
 const Profile = () => {
-  const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
   const [isLoading, setIsLoading] = useState(true);
   const [userScore, setuserScore] = useState(NaN);
-
-  // if (isLoading) return <LoadingDotsIcon />;
 
   useEffect(() => {
     const getme = async () => {

@@ -195,10 +195,8 @@ function EditQuestion(props) {
           JSON.stringify(state.initialState.answerOptions))
     ) {
       dispatch({ type: 'QuestionChanged', value: true });
-      console.log('Changed');
     } else {
       dispatch({ type: 'QuestionChanged', value: false });
-      console.log('NotChanged');
     }
   }, [
     state.title,
@@ -243,13 +241,16 @@ function EditQuestion(props) {
           answerOptions: state.answerOptions.value,
           difficulty: state.difficulty.value
         });
-
-        console.log('resp:', response);
-        if (response.status === 'success') {
-          appDispatch({
-            type: 'flashMessage',
-            value: 'You have edited your question!'
-          });
+        try {
+          console.log('resp:', response);
+          if (response.status === 'success') {
+            appDispatch({
+              type: 'flashMessage',
+              value: 'You have edited your question!'
+            });
+          }
+        } catch (error) {
+          console.log(error);
         }
       };
       question();
