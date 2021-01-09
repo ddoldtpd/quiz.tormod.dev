@@ -255,9 +255,9 @@ function EditQuestion(props) {
         } catch (error) {
           console.log(error);
         }
+        return;
       };
       question();
-      return;
     }
   }, [state.submitCount]);
 

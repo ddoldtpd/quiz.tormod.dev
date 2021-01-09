@@ -51,9 +51,18 @@ export const DoesUsernameExist = async username => {
 
 export const DoesQuestionExist = async title => {
   try {
-    const response = await axios.post('/questions/does-question-exist', {
-      title
-    });
+    const response = await axios.post(
+      '/questions/does-question-exist',
+      {
+        title
+      },
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*', //process.env.REACT_APP_BACKENDURL,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -137,24 +146,35 @@ export const editQuestion = async sendObject => {
         correctAnswer,
         answerOptions,
         difficulty
+      },
+      withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
       }
     });
 
-    // await axios.patch(
-    //   `/users/me/questions/${sendObject.id}`,
-    //   title,
-    //   question,
-    //   correctAnswer,
-    //   answerOptions,
-    //   difficulty,
-    //   {
-    //     withCredentials: true,
-    //     headers: {
-    //       'Access-Control-Allow-Origin': '*', //process.env.REACT_APP_BACKENDURL,
-    //       'Content-Type': 'application/json'
-    //     }
-    //   }
-    // );
+    console.log('response:', response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteQuestion = async id => {
+  try {
+    console.log('Deleting', id);
+
+    const response = await axios({
+      method: 'DELETE',
+      url: `/users/me/questions/${id}`,
+      withCredentials: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      }
+    });
+
     console.log('response:', response);
     return response.data;
   } catch (error) {

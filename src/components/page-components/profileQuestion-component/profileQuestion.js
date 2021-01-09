@@ -33,8 +33,16 @@ function ProfileQuestion(props) {
   return (
     <div className="list-group">
       {question.length > 0 &&
-        question.map(el => {
-          return <QuestionList question={el} key={el._id} />;
+        question.map((el, idx) => {
+          return (
+            <QuestionList
+              question={el}
+              questions={question}
+              key={el._id}
+              index={idx}
+              setQuestions={setQuestions}
+            />
+          );
         })}
       {question.length === 0 && (
         <p className="lead text-muted text-center">
