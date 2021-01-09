@@ -13,6 +13,8 @@ import Signup from './pages/signup';
 import FlashMessages from './utils/FlashMessage';
 import NotFound from './pages/notFound';
 import EditQuestion from './pages/editQuestion';
+import Terms from './pages/terms';
+import About from './pages/about';
 
 const App = () => {
   const initialState = {
@@ -81,6 +83,12 @@ const App = () => {
             </Route>
             <Route path="/sign-up">
               <Signup />
+            </Route>
+            <Route path="/about-QuizApp">
+              <About />
+            </Route>
+            <Route path="/terms">
+              <Terms />
             </Route>
             <Route>
               <NotFound />

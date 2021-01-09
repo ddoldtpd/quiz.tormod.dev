@@ -16,9 +16,12 @@
     "react": "^16.13.1",
     "react-alert": "^7.0.2",
     "react-dom": "^16.13.1",
+    "react-inlinesvg": "^2.2.2",
+    "react-native-svg": "^12.1.0",
     "react-popper": "^2.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-svg": "^11.2.2",
     "use-immer": "^0.4.1"
   },
   "scripts": {
