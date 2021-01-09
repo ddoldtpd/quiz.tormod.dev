@@ -123,6 +123,9 @@ Resources:
           ViewerProtocolPolicy: redirect-to-https
         CacheBehaviors:
           - PathPattern: /api/*
+            MaxTTL: 0
+            MinTTL: 0
+            DefaultTTL: 0
             AllowedMethods:
               - DELETE
               - GET
@@ -131,7 +134,6 @@ Resources:
               - PATCH
               - POST
               - PUT
-            # CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
             TargetOriginId: APIOrigin
             ForwardedValues:
               QueryString: true
