@@ -16,10 +16,7 @@ function ProfileQuestion(props) {
       if (response) {
         const questions = response.data.data;
         console.log('Questions', questions);
-        questions.forEach(el => {
-          console.log('el:', el);
-          setQuestions(question.concat(el));
-        });
+        setQuestions(questions);
       } else {
         console.log('no questions for this user');
       }

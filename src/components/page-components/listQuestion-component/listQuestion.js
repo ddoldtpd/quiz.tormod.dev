@@ -61,14 +61,17 @@ function QuestionList(props) {
 
   const verifyDelete = e => {
     e.preventDefault();
+    let new_questions = questions;
+    new_questions.splice(index, 1);
+    setQuestions(new_questions);
     dispatch({ type: 'Delete', value: true });
+    console.log('index:', index);
+    console.log('qs:', questions);
   };
 
   const requestDelete = e => {
     e.preventDefault();
     dispatch({ type: 'deleteRequest', value: true });
-    console.log('index:', index);
-    console.log('qs:', questions);
   };
 
   const cancelDelete = e => {
@@ -124,24 +127,3 @@ function QuestionList(props) {
 }
 
 export default QuestionList;
-
-{
-  /* <div className="container">
-      <div className="col-md-12 mb-3">
-        {items.map((el, idx) => (
-          <div className="row" key={idx}>
-            <div className="col mb-2">{el}</div>
-            <div className="col mb-2">
-              <button
-                className="btn btn-danger"
-                disabled={items.length === 0}
-                onClick={e => handleRemoveFields(e, idx)}
-              >
-                X
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div> */
-}
