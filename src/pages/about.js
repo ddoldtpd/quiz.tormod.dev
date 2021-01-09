@@ -1,8 +1,7 @@
 import React from 'react';
 import Page from './page';
 import { Link } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
-// import overviewSVG from './../overview.svg';
+import asd from './../';
 
 function About() {
   return (
@@ -33,7 +32,11 @@ function About() {
           is represented, as well as the workflow.
         </p>
         <div className="text-center mt-5">
-          <img src={require('./../overview.svg')} alt="AWS_overview" />
+          <img
+            src={require('./../overview.svg')}
+            alt="AWS_overview"
+            style={{ width: '80%' }}
+          />
         </div>
       </div>
     </Page>
