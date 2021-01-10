@@ -1,12 +1,11 @@
 import React from 'react';
 import Page from './page';
 import { Link } from 'react-router-dom';
-import asd from './../';
 
 function About() {
   return (
     <Page title="About QuizApp">
-      <div>
+      <div className="container">
         <h2 className="text-center">About QuizApp</h2>
         <p className="lead text-muted">
           This website is a quiz application where you can create your own
@@ -35,9 +34,10 @@ function About() {
           <img
             src={require('./../overview.svg')}
             alt="AWS_overview"
-            style={{ width: '80%' }}
+            style={{ maxWidth: '80%' }}
           />
         </div>
+        <div style={{ height: '8rem' }}> </div>
       </div>
     </Page>
   );

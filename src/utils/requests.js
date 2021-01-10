@@ -69,6 +69,28 @@ export const DoesQuestionExist = async title => {
   }
 };
 
+export const AnswerQuestion = async sendObject => {
+  console.log('Answering question:', sendObject);
+  try {
+    const response = await axios.post(
+      `/questions/${sendObject.id}`,
+      {
+        answer: sendObject.answer
+      },
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*', //process.env.REACT_APP_BACKENDURL,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return 'not logged in';
+  }
+};
+
 export const getMyQuestions = async () => {
   try {
     const response = await axios.get('/users/me/questions', {
