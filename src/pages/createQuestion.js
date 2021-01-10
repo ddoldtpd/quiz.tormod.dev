@@ -100,6 +100,10 @@ function CreatePost(props) {
           draft.answer.hasErrors = true;
           draft.answer.message = 'Define the correct answer';
         }
+        if (draft.answer.value.length > 50) {
+          draft.answer.hasErrors = true;
+          draft.answer.message = 'Answer is to long';
+        }
         break;
       case 'answerOptionsImmediately':
         draft.answerOptions.hasErrors = false;
@@ -107,10 +111,18 @@ function CreatePost(props) {
         if (draft.answerOptions.value.length === 0 && draft.submitCount > 0) {
           draft.answerOptions.hasErrors = true;
           draft.answerOptions.message = 'Define the answer options';
-        } else if (draft.answerOptions.value.length > 3) {
+        }
+        if (draft.answerOptions.value.length > 3) {
           draft.answerOptions.hasErrors = true;
           draft.answerOptions.message = 'To many answer options';
         }
+        draft.answerOptions.value.forEach(el => {
+          if (el.length > 50) {
+            draft.answerOptions.hasErrors = true;
+            draft.answerOptions.message =
+              'One of your answer options is to long';
+          }
+        });
         break;
       case 'submitForm':
         if (
