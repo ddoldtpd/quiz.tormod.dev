@@ -207,32 +207,9 @@ const QuestionComponent = () => {
             ))}
         </div>
       </div>
+      <div style={{ height: '12rem' }}> </div>
     </div>
   );
 };
 
 export default QuestionComponent;
-
-// {
-//   "status": "success",
-//   "data": {
-//       "data": [
-//           {
-//               "_id": "5f301c21e33fb68b754009eb",
-//               "answerOptions": [
-//                   "This is a wrong answer",
-//                   "this is another wrong answer!",
-//                   "this is a third wrong answer!"
-//               ],
-//               "timesAnswered": 0,
-//               "timesCorrectAnswered": 0,
-//               "title": "YMCA",
-//               "question": "When referring to the worldwide youth organization based in Geneva, Switzerland, what does the acronym YMCA stand for?",
-//               "correctAnswer": "Young Men’s Christian Association",
-//               "difficulty": "hard",
-//               "author": "5c8a1d5b0190b214360dc057",
-//               "__v": 0
-//           }
-//       ]
-//   }
-// }
