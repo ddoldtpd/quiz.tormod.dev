@@ -4,9 +4,11 @@ import { CSSTransition } from 'react-transition-group';
 import React, { useEffect, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import Page from './page';
+import { useHistory } from 'react-router-dom';
 
 function Signup() {
   const appDispatch = useContext(DispatchContext);
+  let history = useHistory();
 
   const initialState = {
     username: {
@@ -238,6 +240,7 @@ function Signup() {
             type: 'flashMessage',
             value: 'Welcome to your new account!'
           });
+          history.push('/profile');
         }
       };
       signup();

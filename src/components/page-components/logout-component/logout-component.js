@@ -1,15 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../../../utils/requests';
 import DispatchContext from '../../../utils/DispatchContext';
+import { useHistory } from 'react-router-dom';
 
 const LogOutComponent = () => {
   const appDispatch = useContext(DispatchContext);
+  let history = useHistory();
 
   const handleClick = async e => {
     e.preventDefault();
     appDispatch({ type: 'logout' });
     appDispatch({ type: 'flashMessage', value: 'Successfully logged out!' });
+    history.push('/');
   };
 
   return (

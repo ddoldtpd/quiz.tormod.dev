@@ -38,7 +38,7 @@ const LoginComponent = props => {
             name="Username"
             value={username}
             className="form-control form-control-sm input-dark"
-            placeholder="Username"
+            placeholder="Email"
             autoComplete="off"
           />
         </div>
