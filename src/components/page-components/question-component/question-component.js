@@ -1,15 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
-import DispatchContext from '../../../utils/DispatchContext';
-import StateContext from '../../../utils/StateContext';
+import React, { useEffect } from 'react';
 import { useImmerReducer } from 'use-immer';
 import { getRandomQuestion, AnswerQuestion } from '../../../utils/requests';
 import './question-component.css';
 import LoadingDotsIcon from '../../loadingdots-component/LoadingDotsIcon';
 
 const QuestionComponent = () => {
-  const appDispatch = useContext(DispatchContext);
-  const appState = useContext(StateContext);
-
   const initialState = {
     title: {
       value: ''

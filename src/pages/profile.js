@@ -2,7 +2,6 @@ import ProfileQuestion from '../components/page-components/profileQuestion-compo
 import { NavLink, Switch, Route } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from 'react';
 import { getMe } from '../utils/requests';
-import DispatchContext from '../utils/DispatchContext';
 import StateContext from '../utils/StateContext';
 import Page from './page';
 import ProfileAnswer from '../components/page-components/profileAnswer-component/profileAnswer';
@@ -34,8 +33,8 @@ const Profile = () => {
         <h2>{appState.user.username}</h2>&nbsp;&nbsp;&nbsp;&nbsp;
         {/* <div>Score: {userScore === NaN }</div> */}
         <div>Score:</div>&nbsp;
-        <div>{isNaN(userScore) && <LoadingDotsIcon />}</div>
-        <div>{!isNaN(userScore) && userScore}</div>
+        <div>{isLoading && <LoadingDotsIcon />}</div>
+        <div>{!isLoading && userScore}</div>
       </div>
       <div className="profile-nav nav nav-tabs pt-2 mb-4">
         <NavLink exact to="/profile" className="nav-item nav-link">

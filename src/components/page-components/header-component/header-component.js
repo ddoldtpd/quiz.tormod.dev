@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../header-component/header.css';
-import DispatchContext from '../../../utils/DispatchContext';
 import StateContext from '../../../utils/StateContext';
 import LoginComponent from '../login-component/login-component';
 import LogOutComponent from '../logout-component/logout-component';
 
 const Header = () => {
-  const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
   return (
