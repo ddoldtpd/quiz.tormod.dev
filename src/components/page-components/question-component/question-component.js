@@ -112,6 +112,7 @@ const QuestionComponent = () => {
               id: response.data.data[0]._id
             }
           });
+
           dispatch({
             type: 'generateAnswers',
             value: {
@@ -203,7 +204,6 @@ const QuestionComponent = () => {
             ))}
         </div>
       </div>
-      <div style={{ height: '12rem' }}> </div>
     </div>
   );
 };
