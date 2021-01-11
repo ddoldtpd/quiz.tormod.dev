@@ -37,7 +37,6 @@ function About() {
             style={{ maxWidth: '80%' }}
           />
         </div>
-        <div style={{ height: '8rem' }}> </div>
       </div>
     </Page>
   );

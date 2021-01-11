@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import { getRandomQuestion, AnswerQuestion } from '../../../utils/requests';
 import './question-component.css';
 import LoadingDotsIcon from '../../loadingdots-component/LoadingDotsIcon';
+import DispatchContext from '../../../utils/DispatchContext';
 
 const QuestionComponent = () => {
+  const appDispatch = useContext(DispatchContext);
   const initialState = {
     title: {
       value: ''
@@ -112,7 +114,6 @@ const QuestionComponent = () => {
               id: response.data.data[0]._id
             }
           });
-
           dispatch({
             type: 'generateAnswers',
             value: {
@@ -121,6 +122,10 @@ const QuestionComponent = () => {
             }
           });
         } else {
+          appDispatch({
+            type: 'flashMessage',
+            value: 'To many IP calls from your IP!'
+          });
           console.log("Couldn't fetch any question");
         }
       };
