@@ -183,6 +183,7 @@ const QuestionComponent = () => {
               <button
                 key={idx}
                 id={`button-${idx}`}
+                disabled={state.index !== null}
                 className={
                   state.answeredCorrectly &&
                   state.answeredCorrectly != null &&
