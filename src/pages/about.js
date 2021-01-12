@@ -18,13 +18,13 @@ function About() {
         <p className="lead text-muted">
           The website is built using a complete serverless technology stack. It
           is a classic MERN (MongoDB, Express, React, NodeJS) SPA application
-          running on the AWS cloud. The frontend us built using basic bootstrap
+          running on the AWS cloud. The frontend is built using basic bootstrap
           and common npm packages. In the backend a REST API is running in an
           AWS Lambda. This works very well since the application is stateless.
-          However, there is trade off with coldstart which you might experience
-          when using the application. Some effort was made to mitigate this and
-          provisioned concurrency has been enabled. The entire application is
-          deployed using cloudformation and IaC.
+          However, there is a trade off with coldstart which you might
+          experience when using the application. Some effort was made to
+          mitigate this and provisioned concurrency has been enabled. The entire
+          application is deployed using cloudformation and IaC.
         </p>
         <p className="lead text-muted">
           In the image below a overview of the application infrastructure in AWS
