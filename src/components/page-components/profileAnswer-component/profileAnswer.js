@@ -32,14 +32,13 @@ function ProfileAnswer(props) {
       {questions.length > 0 &&
         questions.map((el, idx) => {
           return (
-            <div>{el}</div>
-            // <QuestionList
-            //   question={el}
-            //   questions={'question'}
-            //   key={el._id}
-            //   index={idx}
-            //   setQuestions={setQuestions}
-            // />
+            <QuestionList
+              question={el}
+              questions={'question'}
+              key={el._id}
+              index={idx}
+              setQuestions={setQuestions}
+            />
           );
         })}
       {questions.length === 0 && (

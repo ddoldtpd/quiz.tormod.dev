@@ -10,6 +10,10 @@ Parameters:
     Description: Domain name you want to redirect (without www)
     Type: String
     Default: quiz.tormod.dev
+  ACMCertificate:
+    Description: ARN for certificate
+    Type: String
+    Default: arn:aws:acm:us-east-1:467096703885:certificate/ed636698-8db2-4abc-a5d8-7d6dcdeffac3
   HostedZoneId:
     Type: AWS::Route53::HostedZone::Id
     Description: Route53 Hosted Zone Id that your domain is served in
@@ -143,7 +147,7 @@ Resources:
             Compress: false
         PriceClass: PriceClass_All
         ViewerCertificate:
-          AcmCertificateArn: arn:aws:acm:us-east-1:467096703885:certificate/0dda5204-c0ce-4bed-92e4-be316aabd1f2
+          AcmCertificateArn: !Ref ACMCertificate
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2019
   
@@ -175,7 +179,7 @@ Resources:
           ViewerProtocolPolicy: redirect-to-https
         PriceClass: PriceClass_All
         ViewerCertificate:
-          AcmCertificateArn: arn:aws:acm:us-east-1:467096703885:certificate/0dda5204-c0ce-4bed-92e4-be316aabd1f2
+          AcmCertificateArn: !Ref ACMCertificate
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2019
 
