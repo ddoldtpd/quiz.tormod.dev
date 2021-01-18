@@ -2,11 +2,7 @@
 
 _TODO_
 
-1. Header.
-1. Home page/landing page.
-1. Create Question.
-1. Profile Page.
-1. About us.
+1. List answered questions propperly.
 
 ### `yarn start`
 
