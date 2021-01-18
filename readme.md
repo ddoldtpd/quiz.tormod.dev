@@ -1,5 +1,10 @@
 ## quiz.tormod.dev
 
+<div align="center">
+    <img src="./src/overview.svg" width="500" align="center">
+    <p>QuizApp Infrastructure</p>
+</div>
+
 _TODO_
 
 1. List answered questions propperly.
